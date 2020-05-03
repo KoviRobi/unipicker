@@ -2,7 +2,7 @@
 import unicodedata
 
 ranges = []
-with open('Blocks.txt', 'r') as f:
+with open('@Blocks_txt@', 'r') as f:
     for line in f:
         if line.startswith('#') or len(line) <= 1:
             continue

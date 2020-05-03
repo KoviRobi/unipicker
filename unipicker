@@ -1,4 +1,4 @@
-#!/bin/bash
+#!@bash@/bin/bash
 set -e
 
 should_copy=false
@@ -17,8 +17,8 @@ case "$OSTYPE" in
   *)       os_copy_command="xclip -selection clipboard";;
 esac
 
-symbols_file="${UNIPICKER_SYMBOLS_FILE:-${PWD}/symbols}"
-select_command=${UNIPICKER_SELECT_COMMAND:-fzf}
+symbols_file="${UNIPICKER_SYMBOLS_FILE:-@symbols_file@}"
+select_command=${UNIPICKER_SELECT_COMMAND:-@fzf@}
 copy_command=${UNIPICKER_COPY_COMMAND:-${os_copy_command}}
 
 usage () {
@@ -73,5 +73,5 @@ letter=$(cat "$symbols_file" | eval $select_command | sed -E 's/^(.).*/\1/g')
 
 echo "$letter"
 if [ "$should_copy" = true ];then
-  echo -n "$letter" | $copy_command
+  echo -n "$letter" | eval $copy_command
 fi
