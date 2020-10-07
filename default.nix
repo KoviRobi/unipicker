@@ -5,7 +5,6 @@
 , bash
 , python3
 }:
-
 let symbols_file =
   stdenv.mkDerivation rec {
     pname = "ucd-${unicode-version}-symbols";
@@ -13,7 +12,8 @@ let symbols_file =
 
     Blocks_txt = fetchurl {
       url = "https://unicode.org/Public/${unicode-version}/ucd/Blocks.txt";
-      sha256 = "17y1sr17jvjpgvmv15dc9kfazabkrpga3mw8yl99q6ngkxm2pa41"; };
+      sha256 = "17y1sr17jvjpgvmv15dc9kfazabkrpga3mw8yl99q6ngkxm2pa41";
+    };
 
     phases = "installPhase";
     installPhase = ''
@@ -27,7 +27,8 @@ let symbols_file =
       sed < symbols > $out 's/[Ll][Aa][Mm][Dd][Aa]/& lambda/'
     '';
   };
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   pname = "unipicker-ucd-${unicode-version}";
   version = "unstable-2018-07-10";
 
